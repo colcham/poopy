@@ -1,0 +1,644 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="initial-scale=1,user-scalable=no,maximum-scale=1,width=device-width">
+        <meta name="mobile-web-app-capable" content="yes">
+        <meta name="apple-mobile-web-app-capable" content="yes">
+        <link rel="stylesheet" href="css/leaflet.css">
+        <link rel="stylesheet" href="css/qgis2web.css"><link rel="stylesheet" href="css/fontawesome-all.min.css">
+        <style>
+        html, body, #map {
+            width: 100%;
+            height: 100%;
+            padding: 0;
+            margin: 0;
+        }
+        </style>
+        <title></title>
+    </head>
+    <body>
+        <div id="map">
+        </div>
+        <script src="js/qgis2web_expressions.js"></script>
+        <script src="js/leaflet.js"></script>
+        <script src="js/leaflet.rotatedMarker.js"></script>
+        <script src="js/leaflet.pattern.js"></script>
+        <script src="js/leaflet-hash.js"></script>
+        <script src="js/Autolinker.min.js"></script>
+        <script src="js/rbush.min.js"></script>
+        <script src="js/labelgun.min.js"></script>
+        <script src="js/labels.js"></script>
+        <script src="data/FireHazardZoneRating_1.js"></script>
+        <script src="data/WildlandUrbanInterfaceZoneRating_2.js"></script>
+        <script src="data/NewBuildingsinElDoradoCounty_3.js"></script>
+        <script src="data/NewBuildingsinPlacerCounty_4.js"></script>
+        <script src="data/NewBuildingsinSonomaCounty_5.js"></script>
+        <script>
+        var map = L.map('map', {
+            zoomControl:true, maxZoom:28, minZoom:1
+        }).fitBounds([[37.82324413996169,-124.20750094035506],[41.04484694266535,-118.35916270414306]]);
+        var hash = new L.Hash(map);
+        map.attributionControl.setPrefix('<a href="https://github.com/tomchadwin/qgis2web" target="_blank">qgis2web</a> &middot; <a href="https://leafletjs.com" title="A JS library for interactive maps">Leaflet</a> &middot; <a href="https://qgis.org">QGIS</a>');
+        var autolinker = new Autolinker({truncate: {length: 30, location: 'smart'}});
+        var bounds_group = new L.featureGroup([]);
+        function setBounds() {
+        }
+        map.createPane('pane_OSMStandard_0');
+        map.getPane('pane_OSMStandard_0').style.zIndex = 400;
+        var layer_OSMStandard_0 = L.tileLayer('http://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            pane: 'pane_OSMStandard_0',
+            opacity: 1.0,
+            attribution: '<a href="https://www.openstreetmap.org/copyright">© OpenStreetMap contributors, CC-BY-SA</a>',
+            minZoom: 1,
+            maxZoom: 28,
+            minNativeZoom: 0,
+            maxNativeZoom: 19
+        });
+        layer_OSMStandard_0;
+        map.addLayer(layer_OSMStandard_0);
+        function pop_FireHazardZoneRating_1(feature, layer) {
+            var popupContent = '<table>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['SRA'] !== null ? autolinker.link(feature.properties['SRA'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['HAZ_CODE'] !== null ? autolinker.link(feature.properties['HAZ_CODE'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['HAZ_CLASS'] !== null ? autolinker.link(feature.properties['HAZ_CLASS'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['Shape_Leng'] !== null ? autolinker.link(feature.properties['Shape_Leng'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['Shape_Area'] !== null ? autolinker.link(feature.properties['Shape_Area'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                </table>';
+            layer.bindPopup(popupContent, {maxHeight: 400});
+        }
+
+        function style_FireHazardZoneRating_1_0(feature) {
+            if (feature.properties['HAZ_CODE'] >= 1.000000 && feature.properties['HAZ_CODE'] <= 1.000000 ) {
+                return {
+                pane: 'pane_FireHazardZoneRating_1',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(255,245,235,1.0)',
+                interactive: false,
+            }
+            }
+            if (feature.properties['HAZ_CODE'] >= 1.000000 && feature.properties['HAZ_CODE'] <= 2.000000 ) {
+                return {
+                pane: 'pane_FireHazardZoneRating_1',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(253,146,67,1.0)',
+                interactive: false,
+            }
+            }
+            if (feature.properties['HAZ_CODE'] >= 2.000000 && feature.properties['HAZ_CODE'] <= 3.000000 ) {
+                return {
+                pane: 'pane_FireHazardZoneRating_1',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(127,39,4,1.0)',
+                interactive: false,
+            }
+            }
+        }
+        map.createPane('pane_FireHazardZoneRating_1');
+        map.getPane('pane_FireHazardZoneRating_1').style.zIndex = 401;
+        map.getPane('pane_FireHazardZoneRating_1').style['mix-blend-mode'] = 'normal';
+        var layer_FireHazardZoneRating_1 = new L.geoJson(json_FireHazardZoneRating_1, {
+            attribution: '',
+            interactive: false,
+            dataVar: 'json_FireHazardZoneRating_1',
+            layerName: 'layer_FireHazardZoneRating_1',
+            pane: 'pane_FireHazardZoneRating_1',
+            onEachFeature: pop_FireHazardZoneRating_1,
+            style: style_FireHazardZoneRating_1_0,
+        });
+        bounds_group.addLayer(layer_FireHazardZoneRating_1);
+        map.addLayer(layer_FireHazardZoneRating_1);
+        function pop_WildlandUrbanInterfaceZoneRating_2(feature, layer) {
+            var popupContent = '<table>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['BLK10'] !== null ? autolinker.link(feature.properties['BLK10'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['WATER10'] !== null ? autolinker.link(feature.properties['WATER10'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['PUBFLAG'] !== null ? autolinker.link(feature.properties['PUBFLAG'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['VEG92PC'] !== null ? autolinker.link(feature.properties['VEG92PC'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['VEG01PC'] !== null ? autolinker.link(feature.properties['VEG01PC'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['VEG11PC'] !== null ? autolinker.link(feature.properties['VEG11PC'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['WUIFLAG90'] !== null ? autolinker.link(feature.properties['WUIFLAG90'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['WUICLASS90'] !== null ? autolinker.link(feature.properties['WUICLASS90'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['WUIFLAG00'] !== null ? autolinker.link(feature.properties['WUIFLAG00'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['WUICLASS00'] !== null ? autolinker.link(feature.properties['WUICLASS00'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['WUIFLAG10'] !== null ? autolinker.link(feature.properties['WUIFLAG10'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['WUICLASS10'] !== null ? autolinker.link(feature.properties['WUICLASS10'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['BUFVEG'] !== null ? autolinker.link(feature.properties['BUFVEG'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['HU1990'] !== null ? autolinker.link(feature.properties['HU1990'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['SHU1990'] !== null ? autolinker.link(feature.properties['SHU1990'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['HHU1990'] !== null ? autolinker.link(feature.properties['HHU1990'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['POP1990'] !== null ? autolinker.link(feature.properties['POP1990'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['HUDEN1990'] !== null ? autolinker.link(feature.properties['HUDEN1990'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['SHUDEN1990'] !== null ? autolinker.link(feature.properties['SHUDEN1990'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['HHUDEN1990'] !== null ? autolinker.link(feature.properties['HHUDEN1990'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['POPDEN1990'] !== null ? autolinker.link(feature.properties['POPDEN1990'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['HU2000'] !== null ? autolinker.link(feature.properties['HU2000'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['SHU2000'] !== null ? autolinker.link(feature.properties['SHU2000'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['HHU2000'] !== null ? autolinker.link(feature.properties['HHU2000'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['POP2000'] !== null ? autolinker.link(feature.properties['POP2000'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['HUDEN2000'] !== null ? autolinker.link(feature.properties['HUDEN2000'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['SHUDEN2000'] !== null ? autolinker.link(feature.properties['SHUDEN2000'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['HHUDEN2000'] !== null ? autolinker.link(feature.properties['HHUDEN2000'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['POPDEN2000'] !== null ? autolinker.link(feature.properties['POPDEN2000'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['HU2010'] !== null ? autolinker.link(feature.properties['HU2010'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['SHU2010'] !== null ? autolinker.link(feature.properties['SHU2010'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['HHU2010'] !== null ? autolinker.link(feature.properties['HHU2010'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['POP2010'] !== null ? autolinker.link(feature.properties['POP2010'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['HUDEN2010'] !== null ? autolinker.link(feature.properties['HUDEN2010'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['SHUDEN2010'] !== null ? autolinker.link(feature.properties['SHUDEN2010'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['HHUDEN2010'] !== null ? autolinker.link(feature.properties['HHUDEN2010'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['POPDEN2010'] !== null ? autolinker.link(feature.properties['POPDEN2010'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['Shape_Leng'] !== null ? autolinker.link(feature.properties['Shape_Leng'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['Shape_Area'] !== null ? autolinker.link(feature.properties['Shape_Area'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                </table>';
+            layer.bindPopup(popupContent, {maxHeight: 400});
+        }
+
+        function style_WildlandUrbanInterfaceZoneRating_2_0(feature) {
+            if (feature.properties['WUIFLAG10'] >= 0.000000 && feature.properties['WUIFLAG10'] <= 0.000000 ) {
+                return {
+                pane: 'pane_WildlandUrbanInterfaceZoneRating_2',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(247,252,245,1.0)',
+                interactive: false,
+            }
+            }
+            if (feature.properties['WUIFLAG10'] >= 0.000000 && feature.properties['WUIFLAG10'] <= 1.000000 ) {
+                return {
+                pane: 'pane_WildlandUrbanInterfaceZoneRating_2',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(123,199,124,1.0)',
+                interactive: false,
+            }
+            }
+            if (feature.properties['WUIFLAG10'] >= 1.000000 && feature.properties['WUIFLAG10'] <= 2.000000 ) {
+                return {
+                pane: 'pane_WildlandUrbanInterfaceZoneRating_2',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(16,119,56,1.0)',
+                interactive: false,
+            }
+            }
+        }
+        map.createPane('pane_WildlandUrbanInterfaceZoneRating_2');
+        map.getPane('pane_WildlandUrbanInterfaceZoneRating_2').style.zIndex = 402;
+        map.getPane('pane_WildlandUrbanInterfaceZoneRating_2').style['mix-blend-mode'] = 'normal';
+        var layer_WildlandUrbanInterfaceZoneRating_2 = new L.geoJson(json_WildlandUrbanInterfaceZoneRating_2, {
+            attribution: '',
+            interactive: false,
+            dataVar: 'json_WildlandUrbanInterfaceZoneRating_2',
+            layerName: 'layer_WildlandUrbanInterfaceZoneRating_2',
+            pane: 'pane_WildlandUrbanInterfaceZoneRating_2',
+            onEachFeature: pop_WildlandUrbanInterfaceZoneRating_2,
+            style: style_WildlandUrbanInterfaceZoneRating_2_0,
+        });
+        bounds_group.addLayer(layer_WildlandUrbanInterfaceZoneRating_2);
+        map.addLayer(layer_WildlandUrbanInterfaceZoneRating_2);
+        function pop_NewBuildingsinElDoradoCounty_3(feature, layer) {
+            var popupContent = '<table>\
+                    <tr>\
+                        <th scope="row">Year of Construction</th>\
+                        <td>' + (feature.properties['year'] !== null ? autolinker.link(feature.properties['year'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">Address</th>\
+                        <td>' + (feature.properties['geocode_STREET_ADDRESS'] !== null ? autolinker.link(feature.properties['geocode_STREET_ADDRESS'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">Type of Housing</th>\
+                        <td>' + (feature.properties['geocode_UNIT_CAT'] !== null ? autolinker.link(feature.properties['geocode_UNIT_CAT'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">Development Application Date</th>\
+                        <td>' + (feature.properties['geocode_APP_SUBMIT_DT'] !== null ? autolinker.link(feature.properties['geocode_APP_SUBMIT_DT'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">Proposed Units</th>\
+                        <td>' + (feature.properties['geocode_TOT_PROPOSED_UNITS'] !== null ? autolinker.link(feature.properties['geocode_TOT_PROPOSED_UNITS'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">Approved Units</th>\
+                        <td>' + (feature.properties['geocode_TOT_APPROVED_UNITS'] !== null ? autolinker.link(feature.properties['geocode_TOT_APPROVED_UNITS'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">Disapproved Units</th>\
+                        <td>' + (feature.properties['geocode_TOT_DISAPPROVED_UNITS'] !== null ? autolinker.link(feature.properties['geocode_TOT_DISAPPROVED_UNITS'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                </table>';
+            layer.bindPopup(popupContent, {maxHeight: 400});
+        }
+
+        function style_NewBuildingsinElDoradoCounty_3_0(feature) {
+            if (feature.properties['year'] >= 2018.000000 && feature.properties['year'] <= 2019.000000 ) {
+                return {
+                pane: 'pane_NewBuildingsinElDoradoCounty_3',
+                radius: 4.0,
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1,
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(68,1,84,1.0)',
+                interactive: true,
+            }
+            }
+            if (feature.properties['year'] >= 2019.000000 && feature.properties['year'] <= 2020.000000 ) {
+                return {
+                pane: 'pane_NewBuildingsinElDoradoCounty_3',
+                radius: 4.0,
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1,
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(33,144,141,1.0)',
+                interactive: true,
+            }
+            }
+            if (feature.properties['year'] >= 2020.000000 && feature.properties['year'] <= 2021.000000 ) {
+                return {
+                pane: 'pane_NewBuildingsinElDoradoCounty_3',
+                radius: 4.0,
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1,
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(253,231,37,1.0)',
+                interactive: true,
+            }
+            }
+        }
+        map.createPane('pane_NewBuildingsinElDoradoCounty_3');
+        map.getPane('pane_NewBuildingsinElDoradoCounty_3').style.zIndex = 403;
+        map.getPane('pane_NewBuildingsinElDoradoCounty_3').style['mix-blend-mode'] = 'normal';
+        var layer_NewBuildingsinElDoradoCounty_3 = new L.geoJson(json_NewBuildingsinElDoradoCounty_3, {
+            attribution: '',
+            interactive: true,
+            dataVar: 'json_NewBuildingsinElDoradoCounty_3',
+            layerName: 'layer_NewBuildingsinElDoradoCounty_3',
+            pane: 'pane_NewBuildingsinElDoradoCounty_3',
+            onEachFeature: pop_NewBuildingsinElDoradoCounty_3,
+            pointToLayer: function (feature, latlng) {
+                var context = {
+                    feature: feature,
+                    variables: {}
+                };
+                return L.circleMarker(latlng, style_NewBuildingsinElDoradoCounty_3_0(feature));
+            },
+        });
+        bounds_group.addLayer(layer_NewBuildingsinElDoradoCounty_3);
+        map.addLayer(layer_NewBuildingsinElDoradoCounty_3);
+        function pop_NewBuildingsinPlacerCounty_4(feature, layer) {
+            var popupContent = '<table>\
+                    <tr>\
+                        <th scope="row">Year of Construction</th>\
+                        <td>' + (feature.properties['year'] !== null ? autolinker.link(feature.properties['year'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">Address</th>\
+                        <td>' + (feature.properties['geocode_STREET_ADDRESS'] !== null ? autolinker.link(feature.properties['geocode_STREET_ADDRESS'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">Type of Housing</th>\
+                        <td>' + (feature.properties['geocode_UNIT_CAT'] !== null ? autolinker.link(feature.properties['geocode_UNIT_CAT'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">Development Application Date</th>\
+                        <td>' + (feature.properties['geocode_APP_SUBMIT_DT'] !== null ? autolinker.link(feature.properties['geocode_APP_SUBMIT_DT'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">Proposed Units</th>\
+                        <td>' + (feature.properties['geocode_TOT_PROPOSED_UNITS'] !== null ? autolinker.link(feature.properties['geocode_TOT_PROPOSED_UNITS'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">Approved Units</th>\
+                        <td>' + (feature.properties['geocode_TOT_APPROVED_UNITS'] !== null ? autolinker.link(feature.properties['geocode_TOT_APPROVED_UNITS'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">Disapproved Units</th>\
+                        <td>' + (feature.properties['geocode_TOT_DISAPPROVED_UNITS'] !== null ? autolinker.link(feature.properties['geocode_TOT_DISAPPROVED_UNITS'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                </table>';
+            layer.bindPopup(popupContent, {maxHeight: 400});
+        }
+
+        function style_NewBuildingsinPlacerCounty_4_0(feature) {
+            if (feature.properties['year'] >= 2018.000000 && feature.properties['year'] <= 2019.000000 ) {
+                return {
+                pane: 'pane_NewBuildingsinPlacerCounty_4',
+                radius: 4.0,
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1,
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(68,1,84,1.0)',
+                interactive: true,
+            }
+            }
+            if (feature.properties['year'] >= 2019.000000 && feature.properties['year'] <= 2020.000000 ) {
+                return {
+                pane: 'pane_NewBuildingsinPlacerCounty_4',
+                radius: 4.0,
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1,
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(33,144,141,1.0)',
+                interactive: true,
+            }
+            }
+            if (feature.properties['year'] >= 2020.000000 && feature.properties['year'] <= 2021.000000 ) {
+                return {
+                pane: 'pane_NewBuildingsinPlacerCounty_4',
+                radius: 4.0,
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1,
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(253,231,37,1.0)',
+                interactive: true,
+            }
+            }
+        }
+        map.createPane('pane_NewBuildingsinPlacerCounty_4');
+        map.getPane('pane_NewBuildingsinPlacerCounty_4').style.zIndex = 404;
+        map.getPane('pane_NewBuildingsinPlacerCounty_4').style['mix-blend-mode'] = 'normal';
+        var layer_NewBuildingsinPlacerCounty_4 = new L.geoJson(json_NewBuildingsinPlacerCounty_4, {
+            attribution: '',
+            interactive: true,
+            dataVar: 'json_NewBuildingsinPlacerCounty_4',
+            layerName: 'layer_NewBuildingsinPlacerCounty_4',
+            pane: 'pane_NewBuildingsinPlacerCounty_4',
+            onEachFeature: pop_NewBuildingsinPlacerCounty_4,
+            pointToLayer: function (feature, latlng) {
+                var context = {
+                    feature: feature,
+                    variables: {}
+                };
+                return L.circleMarker(latlng, style_NewBuildingsinPlacerCounty_4_0(feature));
+            },
+        });
+        bounds_group.addLayer(layer_NewBuildingsinPlacerCounty_4);
+        map.addLayer(layer_NewBuildingsinPlacerCounty_4);
+        function pop_NewBuildingsinSonomaCounty_5(feature, layer) {
+            var popupContent = '<table>\
+                    <tr>\
+                        <th scope="row">Year of Construction</th>\
+                        <td>' + (feature.properties['Year'] !== null ? autolinker.link(feature.properties['Year'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">Address</th>\
+                        <td>' + (feature.properties['geocode_STREET_ADDRESS'] !== null ? autolinker.link(feature.properties['geocode_STREET_ADDRESS'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">Housing Type</th>\
+                        <td>' + (feature.properties['geocode_UNIT_CAT'] !== null ? autolinker.link(feature.properties['geocode_UNIT_CAT'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">Development Application Date</th>\
+                        <td>' + (feature.properties['geocode_APP_SUBMIT_DT'] !== null ? autolinker.link(feature.properties['geocode_APP_SUBMIT_DT'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">Proposed Units</th>\
+                        <td>' + (feature.properties['geocode_TOT_PROPOSED_UNITS'] !== null ? autolinker.link(feature.properties['geocode_TOT_PROPOSED_UNITS'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">Approved Units</th>\
+                        <td>' + (feature.properties['geocode_TOT_APPROVED_UNITS'] !== null ? autolinker.link(feature.properties['geocode_TOT_APPROVED_UNITS'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">Disapproved Units</th>\
+                        <td>' + (feature.properties['geocode_TOT_DISAPPROVED_UNITS'] !== null ? autolinker.link(feature.properties['geocode_TOT_DISAPPROVED_UNITS'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                </table>';
+            layer.bindPopup(popupContent, {maxHeight: 400});
+        }
+
+        function style_NewBuildingsinSonomaCounty_5_0(feature) {
+            if (feature.properties['Year'] >= 2018.000000 && feature.properties['Year'] <= 2019.000000 ) {
+                return {
+                pane: 'pane_NewBuildingsinSonomaCounty_5',
+                radius: 4.0,
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1,
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(68,1,84,1.0)',
+                interactive: true,
+            }
+            }
+            if (feature.properties['Year'] >= 2019.000000 && feature.properties['Year'] <= 2020.000000 ) {
+                return {
+                pane: 'pane_NewBuildingsinSonomaCounty_5',
+                radius: 4.0,
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1,
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(33,144,141,1.0)',
+                interactive: true,
+            }
+            }
+            if (feature.properties['Year'] >= 2020.000000 && feature.properties['Year'] <= 2021.000000 ) {
+                return {
+                pane: 'pane_NewBuildingsinSonomaCounty_5',
+                radius: 4.0,
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1,
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(253,231,37,1.0)',
+                interactive: true,
+            }
+            }
+        }
+        map.createPane('pane_NewBuildingsinSonomaCounty_5');
+        map.getPane('pane_NewBuildingsinSonomaCounty_5').style.zIndex = 405;
+        map.getPane('pane_NewBuildingsinSonomaCounty_5').style['mix-blend-mode'] = 'normal';
+        var layer_NewBuildingsinSonomaCounty_5 = new L.geoJson(json_NewBuildingsinSonomaCounty_5, {
+            attribution: '',
+            interactive: true,
+            dataVar: 'json_NewBuildingsinSonomaCounty_5',
+            layerName: 'layer_NewBuildingsinSonomaCounty_5',
+            pane: 'pane_NewBuildingsinSonomaCounty_5',
+            onEachFeature: pop_NewBuildingsinSonomaCounty_5,
+            pointToLayer: function (feature, latlng) {
+                var context = {
+                    feature: feature,
+                    variables: {}
+                };
+                return L.circleMarker(latlng, style_NewBuildingsinSonomaCounty_5_0(feature));
+            },
+        });
+        bounds_group.addLayer(layer_NewBuildingsinSonomaCounty_5);
+        map.addLayer(layer_NewBuildingsinSonomaCounty_5);
+        var baseMaps = {};
+        L.control.layers(baseMaps,{'New Buildings in Sonoma County<br /><table><tr><td style="text-align: center;"><img src="legend/NewBuildingsinSonomaCounty_5_201820190.png" /></td><td>2018 - 2019</td></tr><tr><td style="text-align: center;"><img src="legend/NewBuildingsinSonomaCounty_5_201920201.png" /></td><td>2019 - 2020</td></tr><tr><td style="text-align: center;"><img src="legend/NewBuildingsinSonomaCounty_5_202020212.png" /></td><td>2020 - 2021</td></tr></table>': layer_NewBuildingsinSonomaCounty_5,'New Buildings in Placer County<br /><table><tr><td style="text-align: center;"><img src="legend/NewBuildingsinPlacerCounty_4_201820190.png" /></td><td>2018 - 2019</td></tr><tr><td style="text-align: center;"><img src="legend/NewBuildingsinPlacerCounty_4_201920201.png" /></td><td>2019 - 2020</td></tr><tr><td style="text-align: center;"><img src="legend/NewBuildingsinPlacerCounty_4_202020212.png" /></td><td>2020 - 2021</td></tr></table>': layer_NewBuildingsinPlacerCounty_4,'New Buildings in El Dorado County<br /><table><tr><td style="text-align: center;"><img src="legend/NewBuildingsinElDoradoCounty_3_201820190.png" /></td><td>2018 - 2019</td></tr><tr><td style="text-align: center;"><img src="legend/NewBuildingsinElDoradoCounty_3_201920201.png" /></td><td>2019 - 2020</td></tr><tr><td style="text-align: center;"><img src="legend/NewBuildingsinElDoradoCounty_3_202020212.png" /></td><td>2020 - 2021</td></tr></table>': layer_NewBuildingsinElDoradoCounty_3,'Wildland Urban Interface Zone Rating<br /><table><tr><td style="text-align: center;"><img src="legend/WildlandUrbanInterfaceZoneRating_2_000.png" /></td><td>0 - 0</td></tr><tr><td style="text-align: center;"><img src="legend/WildlandUrbanInterfaceZoneRating_2_011.png" /></td><td>0 - 1</td></tr><tr><td style="text-align: center;"><img src="legend/WildlandUrbanInterfaceZoneRating_2_122.png" /></td><td>1 - 2</td></tr></table>': layer_WildlandUrbanInterfaceZoneRating_2,'Fire Hazard Zone Rating<br /><table><tr><td style="text-align: center;"><img src="legend/FireHazardZoneRating_1_110.png" /></td><td>1 - 1</td></tr><tr><td style="text-align: center;"><img src="legend/FireHazardZoneRating_1_121.png" /></td><td>1 - 2</td></tr><tr><td style="text-align: center;"><img src="legend/FireHazardZoneRating_1_232.png" /></td><td>2 - 3</td></tr></table>': layer_FireHazardZoneRating_1,"OSM Standard": layer_OSMStandard_0,},{collapsed:false}).addTo(map);
+        setBounds();
+        </script>
+    </body>
+</html>
